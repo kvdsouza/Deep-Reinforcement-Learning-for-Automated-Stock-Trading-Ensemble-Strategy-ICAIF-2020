@@ -1,0 +1,83 @@
+{
+    "observation_space": {
+        ":type:": "<class 'gym.spaces.box.Box'>",
+        ":serialized:": "gASVkAgAAAAAAACMDmd5bS5zcGFjZXMuYm94lIwDQm94lJOUKYGUfZQojAVkdHlwZZSMBW51bXB5lIwFZHR5cGWUk5SMAmY0lImIh5RSlChLA4wBPJROTk5K/////0r/////SwB0lGKMBXNoYXBllEu1hZSMA2xvd5SMFW51bXB5LmNvcmUubXVsdGlhcnJheZSMDF9yZWNvbnN0cnVjdJSTlGgGjAduZGFycmF5lJOUSwCFlEMBYpSHlFKUKEsBS7WFlGgLiULUAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJR0lGKMBGhpZ2iUaBNoFUsAhZRoF4eUUpQoSwFLtYWUaAuJQtQCAAAAAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/AACAfwAAgH8AAIB/lHSUYowNYm91bmRlZF9iZWxvd5RoE2gVSwCFlGgXh5RSlChLAUu1hZRoCIwCYjGUiYiHlFKUKEsDjAF8lE5OTkr/////Sv////9LAHSUYolDtQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQGUdJRijA1ib3VuZGVkX2Fib3ZllGgTaBVLAIWUaBeHlFKUKEsBS7WFlGgriUO1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJR0lGKMCl9ucF9yYW5kb22UTnViLg==",
+        "dtype": "float32",
+        "shape": [
+            181
+        ],
+        "low": "[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]",
+        "high": "[inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf\n inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf\n inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf\n inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf\n inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf\n inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf\n inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf\n inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf\n inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf\n inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf inf\n inf]",
+        "bounded_below": "[ True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True]",
+        "bounded_above": "[False False False False False False False False False False False False\n False False False False False False False False False False False False\n False False False False False False False False False False False False\n False False False False False False False False False False False False\n False False False False False False False False False False False False\n False False False False False False False False False False False False\n False False False False False False False False False False False False\n False False False False False False False False False False False False\n False False False False False False False False False False False False\n False False False False False False False False False False False False\n False False False False False False False False False False False False\n False False False False False False False False False False False False\n False False False False False False False False False False False False\n False False False False False False False False False False False False\n False False False False False False False False False False False False\n False]",
+        "_np_random": null
+    },
+    "action_space": {
+        ":type:": "<class 'gym.spaces.box.Box'>",
+        ":serialized:": "gASVpAIAAAAAAACMDmd5bS5zcGFjZXMuYm94lIwDQm94lJOUKYGUfZQojAVkdHlwZZSMBW51bXB5lIwFZHR5cGWUk5SMAmY0lImIh5RSlChLA4wBPJROTk5K/////0r/////SwB0lGKMBXNoYXBllEsehZSMA2xvd5SMFW51bXB5LmNvcmUubXVsdGlhcnJheZSMDF9yZWNvbnN0cnVjdJSTlGgGjAduZGFycmF5lJOUSwCFlEMBYpSHlFKUKEsBSx6FlGgLiUN4AACAvwAAgL8AAIC/AACAvwAAgL8AAIC/AACAvwAAgL8AAIC/AACAvwAAgL8AAIC/AACAvwAAgL8AAIC/AACAvwAAgL8AAIC/AACAvwAAgL8AAIC/AACAvwAAgL8AAIC/AACAvwAAgL8AAIC/AACAvwAAgL8AAIC/lHSUYowEaGlnaJRoE2gVSwCFlGgXh5RSlChLAUsehZRoC4lDeAAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AACAP5R0lGKMDWJvdW5kZWRfYmVsb3eUaBNoFUsAhZRoF4eUUpQoSwFLHoWUaAiMAmIxlImIh5RSlChLA4wBfJROTk5K/////0r/////SwB0lGKJQx4BAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQGUdJRijA1ib3VuZGVkX2Fib3ZllGgTaBVLAIWUaBeHlFKUKEsBSx6FlGgriUMeAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBlHSUYowKX25wX3JhbmRvbZROdWIu",
+        "dtype": "float32",
+        "shape": [
+            30
+        ],
+        "low": "[-1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1.\n -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1.]",
+        "high": "[1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.\n 1. 1. 1. 1. 1. 1.]",
+        "bounded_below": "[ True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True]",
+        "bounded_above": "[ True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True  True  True  True  True  True  True\n  True  True  True  True  True  True]",
+        "_np_random": null
+    },
+    "nb_eval_steps": 100,
+    "param_noise_adaption_interval": 50,
+    "nb_train_steps": 50,
+    "nb_rollout_steps": 100,
+    "verbose": 0,
+    "param_noise": null,
+    "action_noise": {
+        ":type:": "<class 'stable_baselines.common.noise.OrnsteinUhlenbeckActionNoise'>",
+        ":serialized:": "gASVKwQAAAAAAACMHXN0YWJsZV9iYXNlbGluZXMuY29tbW9uLm5vaXNllIwcT3Juc3RlaW5VaGxlbmJlY2tBY3Rpb25Ob2lzZZSTlCmBlH2UKIwGX3RoZXRhlEc/wzMzMzMzM4wDX211lIwVbnVtcHkuY29yZS5tdWx0aWFycmF5lIwMX3JlY29uc3RydWN0lJOUjAVudW1weZSMB25kYXJyYXmUk5RLAIWUQwFilIeUUpQoSwFLHoWUaAqMBWR0eXBllJOUjAJmOJSJiIeUUpQoSwOMATyUTk5OSv////9K/////0sAdJRiiUPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlHSUYowGX3NpZ21hlGgJaAxLAIWUaA6HlFKUKEsBSx6FlGgWiUPwAAAAAAAA4D8AAAAAAADgPwAAAAAAAOA/AAAAAAAA4D8AAAAAAADgPwAAAAAAAOA/AAAAAAAA4D8AAAAAAADgPwAAAAAAAOA/AAAAAAAA4D8AAAAAAADgPwAAAAAAAOA/AAAAAAAA4D8AAAAAAADgPwAAAAAAAOA/AAAAAAAA4D8AAAAAAADgPwAAAAAAAOA/AAAAAAAA4D8AAAAAAADgPwAAAAAAAOA/AAAAAAAA4D8AAAAAAADgPwAAAAAAAOA/AAAAAAAA4D8AAAAAAADgPwAAAAAAAOA/AAAAAAAA4D8AAAAAAADgPwAAAAAAAOA/lHSUYowDX2R0lEc/hHrhR64Ue4wNaW5pdGlhbF9ub2lzZZROjApub2lzZV9wcmV2lGgJaAxLAIWUaA6HlFKUKEsBSx6FlGgWiUPw5pP+x5uA+b84ckQyK+vUPywb6k+Xq/I/WHq6cG+21j/ON5BMNRPZv57wPHV2ugFAXrEgu3kW4j+8VALieqXov/riJNEAwsO/Gsy2jYH96z8ZvtSl6G3cv4p55YbmxeS/6+snpidY4D9fpi/SMBDsPx+eb1RvbNq/6F8b9R2T6r/wEJPZuZ/wPzmiloy4p9g/0/d60k504r/0+7JpL0bVP+15Zkg0HvW/t6ZEnjSg4L/ai6C05jn1v5VdcTHx/9G/pocO8xgVAUBCNHJf2gjxPx4DbeYP+Oy/GIn6vHp5AMCJwMykeZHFv/oY2WiqPu+/lHSUYnViLg==",
+        "_theta": 0.15,
+        "_mu": "[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.\n 0. 0. 0. 0. 0. 0.]",
+        "_sigma": "[0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5\n 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5]",
+        "_dt": 0.01,
+        "initial_noise": null,
+        "noise_prev": "[-1.59389856  0.32685356  1.16689235  0.35488497 -0.39179738  2.21604625\n  0.56524359 -0.7702002  -0.15435801  0.87469557 -0.4442083  -0.64915778\n  0.51076109  0.8769764  -0.41286834 -0.83045862  1.0389956   0.38523687\n -0.57669774  0.33240877 -1.31987408 -0.51955634 -1.32663603 -0.28124647\n  2.13530149  1.06466138 -0.90528102 -2.05931614 -0.16850205 -0.97639962]"
+    },
+    "gamma": 0.99,
+    "tau": 0.001,
+    "normalize_returns": false,
+    "enable_popart": false,
+    "normalize_observations": false,
+    "batch_size": 128,
+    "observation_range": [
+        -5.0,
+        5.0
+    ],
+    "return_range": [
+        -Infinity,
+        Infinity
+    ],
+    "critic_l2_reg": 0.0,
+    "actor_lr": 0.0001,
+    "critic_lr": 0.001,
+    "clip_norm": null,
+    "reward_scale": 1.0,
+    "memory_limit": null,
+    "buffer_size": 50000,
+    "random_exploration": 0.0,
+    "policy": {
+        ":type:": "<class 'abc.ABCMeta'>",
+        ":serialized:": "gASVMAAAAAAAAACMHnN0YWJsZV9iYXNlbGluZXMuZGRwZy5wb2xpY2llc5SMCU1scFBvbGljeZSTlC4=",
+        "__module__": "stable_baselines.ddpg.policies",
+        "__doc__": "\n    Policy object that implements actor critic, using a MLP (2 layers of 64)\n\n    :param sess: (TensorFlow session) The current TensorFlow session\n    :param ob_space: (Gym Space) The observation space of the environment\n    :param ac_space: (Gym Space) The action space of the environment\n    :param n_env: (int) The number of environments to run\n    :param n_steps: (int) The number of steps to run for each environment\n    :param n_batch: (int) The number of batch to run (n_envs * n_steps)\n    :param reuse: (bool) If the policy is reusable or not\n    :param _kwargs: (dict) Extra keyword arguments for the nature CNN feature extraction\n    ",
+        "__init__": "<function MlpPolicy.__init__ at 0x7fd392d916a8>",
+        "__abstractmethods__": "frozenset()",
+        "_abc_registry": "<_weakrefset.WeakSet object at 0x7fd392d93160>",
+        "_abc_cache": "<_weakrefset.WeakSet object at 0x7fd392d93198>",
+        "_abc_negative_cache": "<_weakrefset.WeakSet object at 0x7fd392d93208>",
+        "_abc_negative_cache_version": 51
+    },
+    "n_envs": 1,
+    "n_cpu_tf_sess": 1,
+    "seed": null,
+    "_vectorize_action": true,
+    "policy_kwargs": {}
+}
