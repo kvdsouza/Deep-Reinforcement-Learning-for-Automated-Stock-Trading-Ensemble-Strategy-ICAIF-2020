@@ -5,13 +5,15 @@ import time
 import gym
 
 # RL models from stable-baselines
-from stable_baselines import SAC
+# from stable_baselines import GAIL, SAC
+from stable_baselines import ACER
 from stable_baselines import PPO2
 from stable_baselines import A2C
 from stable_baselines import DDPG
 from stable_baselines import TD3
+# from stable_baselines.gail import ExportDataset, generate_expert_traj
 from stable_baselines.ddpg.policies import DDPGPolicy
-from stable_baselines.common.policies import MlpPolicy
+from stable_baselines.common.policies import MlpPolicy, MlpLstmPolicy, MlpLnLstmPolicy
 from stable_baselines.common.noise import NormalActionNoise, OrnsteinUhlenbeckActionNoise, AdaptiveParamNoiseSpec
 from stable_baselines.common.vec_env import DummyVecEnv
 from preprocessing.preprocessors import *
@@ -24,17 +26,18 @@ from env.EnvMultipleStock_trade import StockEnvTrade
 
 seed = 1
 
-def train_A2C(env_train, model_name, timesteps=50000):
+def train_A2C(env_train, model_name, timesteps=25000):
     """A2C model"""
 
     start = time.time()
-    model = A2C('MlpPolicy', env_train, verbose=0, gamma=0.99)
+    model = A2C('MlpPolicy', env_train, verbose=0, gamma=0.99, seed=seed)
     model.learn(total_timesteps=timesteps)
     end = time.time()
 
     model.save(f"{config.TRAINED_MODEL_DIR}/{model_name}")
     print('Training time (A2C): ', (end - start) / 60, ' minutes')
     return model
+
 
 def train_DDPG(env_train, model_name, timesteps=10000):
     """DDPG model"""
@@ -45,7 +48,7 @@ def train_DDPG(env_train, model_name, timesteps=10000):
     action_noise = OrnsteinUhlenbeckActionNoise(mean=np.zeros(n_actions), sigma=float(0.5) * np.ones(n_actions))
 
     start = time.time()
-    model = DDPG('MlpPolicy', env_train, param_noise=param_noise, action_noise=action_noise)
+    model = DDPG('MlpPolicy', env_train, param_noise=param_noise, action_noise=action_noise, actor_lr=0.001, critic_lr=0.005, seed=seed)
     model.learn(total_timesteps=timesteps)
     end = time.time()
 
@@ -53,11 +56,69 @@ def train_DDPG(env_train, model_name, timesteps=10000):
     print('Training time (DDPG): ', (end-start)/60,' minutes')
     return model
 
+def train_TD3(env_train, model_name, timesteps=10000):
+    """TD3 model"""
+
+    # add the noise objects for DDPG
+    n_actions = env_train.action_space.shape[-1]
+    action_noise = OrnsteinUhlenbeckActionNoise(mean=np.zeros(n_actions), sigma=float(0.5) * np.ones(n_actions))
+
+    start = time.time()
+    model = TD3('MlpPolicy', env_train, action_noise=action_noise, random_exploration=0, seed=seed)
+    model.learn(total_timesteps=timesteps)
+    end = time.time()
+
+    model.save(f"{config.TRAINED_MODEL_DIR}/{model_name}")
+    print('Training time (TD3): ', (end-start)/60,' minutes')
+    return model
+
+def train2_TD3(env_train, model_name, timesteps=10000):
+    """TD3 model"""
+
+    # add the noise objects for DDPG
+    n_actions = env_train.action_space.shape[-1]
+    action_noise = OrnsteinUhlenbeckActionNoise(mean=np.zeros(n_actions), sigma=float(0.1) * np.ones(n_actions))
+
+    start = time.time()
+    model = TD3('MlpPolicy', env_train, action_noise=action_noise, random_exploration=0.005, learning_rate=0.001, seed=seed)
+    model.learn(total_timesteps=timesteps)
+    end = time.time()
+
+    model.save(f"{config.TRAINED_MODEL_DIR}/{model_name}")
+    print('Training time (TD3): ', (end-start)/60,' minutes')
+    return model
+
+def train3_TD3(env_train, model_name, timesteps=10000):
+    """TD3 model"""
+
+    # add the noise objects for DDPG
+    n_actions = env_train.action_space.shape[-1]
+    action_noise = OrnsteinUhlenbeckActionNoise(mean=np.zeros(n_actions), sigma=float(0.5) * np.ones(n_actions))
+
+    start = time.time()
+    model = TD3('MlpPolicy', env_train, action_noise=action_noise, random_exploration=0.01, seed=seed)
+    model.learn(total_timesteps=timesteps)
+    end = time.time()
+
+    model.save(f"{config.TRAINED_MODEL_DIR}/{model_name}")
+    print('Training time (TD3): ', (end-start)/60,' minutes')
+    return model
+
+def train_ACKTR(env_train, model_name, timesteps=25000):
+    start = time.time()
+    model = ACKTR('MlpPolicy', env_train, verbose=1, seed=seed)
+    model.learn(total_timesteps=timesteps)
+    end = time.time()
+
+    model.save(f"{config.TRAINED_MODEL_DIR}/{model_name}")
+    print('Training time (ACKTR): ', (end - start) / 60, ' minutes')
+    return model
+
 def train_PPO(env_train, model_name, timesteps=50000):
     """PPO model"""
 
     start = time.time()
-    model = PPO2('MlpPolicy', env_train, ent_coef = 0.005, nminibatches = 4, n_steps=64)
+    model = PPO2('MlpPolicy', env_train, ent_coef = 0.005, nminibatches = 4, n_steps=64, seed=seed)
     #model = PPO2('MlpPolicy', env_train, ent_coef = 0.005)
 
     model.learn(total_timesteps=timesteps)
@@ -66,6 +127,8 @@ def train_PPO(env_train, model_name, timesteps=50000):
     model.save(f"{config.TRAINED_MODEL_DIR}/{model_name}")
     print('Training time (PPO): ', (end - start) / 60, ' minutes')
     return model
+
+
 
 
 def DRL_prediction(df,
@@ -77,7 +140,7 @@ def DRL_prediction(df,
                    rebalance_window,
                    turbulence_threshold,
                    initial):
-    ### make a prediction based on trained model### 
+    ### make a prediction based on trained model###
 
     ## trading env
     trade_data = data_split(df, start=unique_trade_date[iter_num - rebalance_window], end=unique_trade_date[iter_num])
@@ -159,17 +222,17 @@ def run_ensemble_strategy(df, unique_trade_date, rebalance_window, validation_wi
 
         historical_turbulence = historical_turbulence.drop_duplicates(subset=['datadate'])
 
-        historical_turbulence_mean = np.mean(historical_turbulence.turbulence.values)   
+        historical_turbulence_mean = np.mean(historical_turbulence.turbulence.values)
 
         if historical_turbulence_mean > insample_turbulence_threshold:
             # if the mean of the historical data is greater than the 90% quantile of insample turbulence data
-            # then we assume that the current market is volatile, 
-            # therefore we set the 90% quantile of insample turbulence data as the turbulence threshold 
+            # then we assume that the current market is volatile,
+            # therefore we set the 90% quantile of insample turbulence data as the turbulence threshold
             # meaning the current turbulence can't exceed the 90% quantile of insample turbulence data
             turbulence_threshold = insample_turbulence_threshold
         else:
             # if the mean of the historical data is less than the 90% quantile of insample turbulence data
-            # then we tune up the turbulence_threshold, meaning we lower the risk 
+            # then we tune up the turbulence_threshold, meaning we lower the risk
             turbulence_threshold = np.quantile(insample_turbulence.turbulence.values, 1)
         print("turbulence_threshold: ", turbulence_threshold)
 
@@ -186,54 +249,110 @@ def run_ensemble_strategy(df, unique_trade_date, rebalance_window, validation_wi
                                                           iteration=i)])
         obs_val = env_val.reset()
         ############## Environment Setup ends ##############
+        curr_sharpes = []
+        curr_models = ("A2C", "TD3", "DDPG")
 
         ############## Training and Validation starts ##############
         print("======Model training from: ", 20090000, "to ",
-              unique_trade_date[i - rebalance_window - validation_window])
-        # print("training: ",len(data_split(df, start=20090000, end=test.datadate.unique()[i-rebalance_window]) ))
-        # print("==============Model Training===========")
-        print("======A2C Training========")
-        model_a2c = train_A2C(env_train, model_name="A2C_10k_dow_{}".format(i), timesteps=10000)
-        print("======A2C Validation from: ", unique_trade_date[i - rebalance_window - validation_window], "to ",
+               unique_trade_date[i - rebalance_window - validation_window])
+        print("==============Model Training===========")
+        # print("======A2C Training========")
+        # model_a2c = train_A2C(env_train, model_name="A2C_10k_dow_{}".format(i), timesteps=10000)
+        # print("======A2C Validation from: ", unique_trade_date[i - rebalance_window - validation_window], "to ",
+        #       unique_trade_date[i - rebalance_window])
+        # DRL_validation(model=model_a2c, test_data=validation, test_env=env_val, test_obs=obs_val)
+        # sharpe_a2c = get_validation_sharpe(i)
+        # curr_sharpes.append(sharpe_a2c)
+        # print("A2C Sharpe Ratio: ", sharpe_a2c)
+
+
+        print("======TD3 Model 1 Training========")
+        model1_td3 = train_TD3(env_train, model_name="M1TD3_10k_dow_{}".format(i), timesteps=10000)
+        print("======TD3 Validation from: ", unique_trade_date[i - rebalance_window - validation_window], "to ",
               unique_trade_date[i - rebalance_window])
-        DRL_validation(model=model_a2c, test_data=validation, test_env=env_val, test_obs=obs_val)
-        sharpe_a2c = get_validation_sharpe(i)
-        print("A2C Sharpe Ratio: ", sharpe_a2c)
+        DRL_validation(model=model1_td3, test_data=validation, test_env=env_val, test_obs=obs_val)
+        sharpe1_td3 = get_validation_sharpe(i)
+        curr_sharpes.append(sharpe1_td3)
+        print("TD3 Sharpe Ratio: ", sharpe1_td3)
+
+        print("======TD3 Model 2 Training========")
+        model2_td3 = train_TD3(env_train, model_name="M2TD3_10k_dow_{}".format(i), timesteps=10000)
+        print("======TD3 Validation from: ", unique_trade_date[i - rebalance_window - validation_window], "to ",
+              unique_trade_date[i - rebalance_window])
+        DRL_validation(model=model2_td3, test_data=validation, test_env=env_val, test_obs=obs_val)
+        sharpe2_td3 = get_validation_sharpe(i)
+        curr_sharpes.append(sharpe2_td3)
+        print("TD3 Sharpe Ratio: ", sharpe2_td3)
+
+        print("======TD3 Model 3 Training========")
+        model3_td3 = train_TD3(env_train, model_name="M2TD3_10k_dow_{}".format(i), timesteps=10000)
+        print("======TD3 Validation from: ", unique_trade_date[i - rebalance_window - validation_window], "to ",
+              unique_trade_date[i - rebalance_window])
+        DRL_validation(model=model3_td3, test_data=validation, test_env=env_val, test_obs=obs_val)
+        sharpe3_td3 = get_validation_sharpe(i)
+        curr_sharpes.append(sharpe3_td3)
+        print("TD3 Sharpe Ratio: ", sharpe3_td3)
+
+        #
+        # print("======ACKTR Training========")
+        # model_acktr = train_ACKTR(env_train, model_name="ACKTR_10k_dow_{}".format(i), timesteps=10000)
+        # print("======ACKTR Validation from: ", unique_trade_date[i - rebalance_window - validation_window], "to ",
+        #       unique_trade_date[i - rebalance_window])
+        # DRL_validation(model=model_acktr, test_data=validation, test_env=env_val, test_obs=obs_val)
+        # sharpe_acktr = get_validation_sharpe(i)
+        # print("ACKTR Sharpe Ratio: ", sharpe_acktr)
+
 
         # print("======PPO Training========")
-        # model_ppo = train_PPO(env_train, model_name="PPO_30k_dow_{}".format(i), timesteps=30000)
+        # model_ppo = train_PPO(env_train, model_name="PPO_10k_dow_{}".format(i), timesteps=10000)
         # print("======PPO Validation from: ", unique_trade_date[i - rebalance_window - validation_window], "to ",
         #       unique_trade_date[i - rebalance_window])
         # DRL_validation(model=model_ppo, test_data=validation, test_env=env_val, test_obs=obs_val)
         # sharpe_ppo = get_validation_sharpe(i)
-        sharpe_ppo = -10000
+        # curr_sharpes.append(sharpe_ppo)
         # print("PPO Sharpe Ratio: ", sharpe_ppo)
 
-        print("======DDPG Training========")
-        model_ddpg = train_DDPG(env_train, model_name="DDPG_5k_dow_{}".format(i), timesteps=5000)
-        #model_ddpg = train_TD3(env_train, model_name="DDPG_10k_dow_{}".format(i), timesteps=20000)
-        print("======DDPG Validation from: ", unique_trade_date[i - rebalance_window - validation_window], "to ",
-              unique_trade_date[i - rebalance_window])
-        DRL_validation(model=model_ddpg, test_data=validation, test_env=env_val, test_obs=obs_val)
-        sharpe_ddpg = get_validation_sharpe(i)
+        #
+        # print("======DDPG Training========")
+        # model_ddpg = train_DDPG(env_train, model_name="DDPG_5k_dow_{}".format(i), timesteps=10000)
+        # #model_ddpg = train_TD3(env_train, model_name="DDPG_10k_dow_{}".format(i), timesteps=20000)
+        # print("======DDPG Validation from: ", unique_trade_date[i - rebalance_window - validation_window], "to ",
+        #       unique_trade_date[i - rebalance_window])
+        # DRL_validation(model=model_ddpg, test_data=validation, test_env=env_val, test_obs=obs_val)
+        # sharpe_ddpg = get_validation_sharpe(i)
+        # curr_sharpes.append(sharpe_ddpg)
+        # print("DDPG Sharpe Ratio: ", sharpe_ddpg)
 
-        ppo_sharpe_list.append(sharpe_ppo)
-        a2c_sharpe_list.append(sharpe_a2c)
-        ddpg_sharpe_list.append(sharpe_ddpg)
+        # ppo_sharpe_list.append(sharpe_ppo)
+        # a2c_sharpe_list.append(sharpe_a2c)
+        # ddpg_sharpe_list.append(sharpe_ddpg)
 
-        # Model Selection based on sharpe ratio
-        if (sharpe_ppo >= sharpe_a2c) & (sharpe_ppo >= sharpe_ddpg):
-            model_ensemble = model_ppo
-            model_use.append('PPO')
-        elif (sharpe_a2c > sharpe_ppo) & (sharpe_a2c > sharpe_ddpg):
-            model_ensemble = model_a2c
-            model_use.append('A2C')
+        #Model Selection based on sharpe ratio
+        # if (sharpe_td3 >= sharpe_a2c) and (sharpe_td3 >= sharpe_ddpg):
+        #     model_ensemble = model_td3
+        #     model_use.append('TD3')
+        # elif (sharpe_a2c > sharpe_td3) and (sharpe_a2c > sharpe_ddpg):
+        #     model_ensemble = model_a2c
+        #     model_use.append('A2C')
+        # else:
+        #     model_ensemble = model_ddpg
+        #     model_use.append('DDPG')
+
+
+        if (sharpe1_td3 >= sharpe2_td3) and (sharpe1_td3 >= sharpe3_td3):
+            model_ensemble = model1_td3
+            model_use.append('M1TD3')
+        elif (sharpe2_td3 > sharpe1_td3) and (sharpe2_td3 > sharpe3_td3):
+            model_ensemble = model2_td3
+            model_use.append('M2TD3')
         else:
-            model_ensemble = model_ddpg
-            model_use.append('DDPG')
-        ############## Training and Validation ends ##############    
+            model_ensemble = model3_td3
+            model_use.append('M3TD3')
 
-        ############## Trading starts ##############    
+
+        ############## Training and Validation ends ##############
+
+        ############## Trading starts ##############
         print("======Trading from: ", unique_trade_date[i - rebalance_window], "to ", unique_trade_date[i])
         #print("Used Model: ", model_ensemble)
         last_state_ensemble = DRL_prediction(df=df, model=model_ensemble, name="ensemble",
@@ -243,9 +362,7 @@ def run_ensemble_strategy(df, unique_trade_date, rebalance_window, validation_wi
                                              turbulence_threshold=turbulence_threshold,
                                              initial=initial)
         # print("============Trading Done============")
-        ############## Trading ends ##############    
+        ############## Trading ends ##############
 
     end = time.time()
     print("Ensemble Strategy took: ", (end - start) / 60, " minutes")
-    print(np.mean(a2c_sharpe_list))
-    print(np.mean(ddpg_sharpe_list))

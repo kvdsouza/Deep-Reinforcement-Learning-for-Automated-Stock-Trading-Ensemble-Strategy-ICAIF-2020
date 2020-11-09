@@ -41,7 +41,7 @@ class StockEnvTrade(gym.Env):
         self.observation_space = spaces.Box(low=0, high=np.inf, shape = (181,))
         # load data from a pandas dataframe
         self.data = self.df.loc[self.day,:]
-        self.terminal = False     
+        self.terminal = False
         self.turbulence_threshold = turbulence_threshold
         # initalize state
         self.state = [INITIAL_ACCOUNT_BALANCE] + \
@@ -115,6 +115,17 @@ class StockEnvTrade(gym.Env):
     def step(self, actions):
         # print(self.day)
         self.terminal = self.day >= len(self.df.index.unique())-1
+
+        # if self.day == 63 or self.day == 62:
+        #     print(self.terminal)
+        #     assert False
+
+
+
+        # if self.terminal == False:
+        #     print(self.df.head())
+        #     print(self.df.index)
+        #     assert False
         # print(actions)
 
         if self.terminal:
